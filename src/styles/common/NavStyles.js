@@ -7,14 +7,13 @@ export const NavContainer = styled.div`
     
     display: flex;
     position: fixed;
-    left: 0;
     z-index: 1000;
 
     text-align: center;
     align-items: center;
     justify-content: space-evenly;
     
-    background: white;
+   /* background: white;*/
 `
 
 export const NavLink = styled(Link)`
