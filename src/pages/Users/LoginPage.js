@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import {LoginInput} from "../../styles/common/Inputs";
 import {NavLink} from "../../styles/common/NavStyles";
+import {useState} from "react";
 
-function Login() {
+function LoginPage() {
+    const [userInput, setUserInput] = useState({
+        id: "",
+        password: "",
+    })
 
     return (
         <>
@@ -23,7 +28,7 @@ function Login() {
     );
 }
 
-export default Login;
+export default LoginPage;
 
 const Container = styled.div`
     padding-top: 70px;
