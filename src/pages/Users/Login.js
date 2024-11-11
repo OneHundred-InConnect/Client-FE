@@ -1,41 +1,15 @@
 import styled from "styled-components";
-import Top from "../../components/Top";
-import {Button1} from "../../styles/common/Buttons";
 import {LoginInput} from "../../styles/common/Inputs";
-import {useState} from "react";
+import {NavLink} from "../../styles/common/NavStyles";
 
 function Login() {
-    const [isBusiness, setBusiness] = useState(true);
-
-    const handleTypeBtnClick = e => {  // 토글로 구현하셈
-        e.preventDefault();
-
-        setBusiness(!isBusiness);
-
-        if(isBusiness) {
-            e.target.style.color = "white";
-            e.target.style.backgroundColor = "dodgerblue";
-            e.target.style.borderColor = "dodgerblue";
-        }
-        else {
-            e.target.style.color = "grey";
-            e.target.style.borderColor = "lightgrey";
-            e.target.style.backgroundColor = "white";
-        }
-
-    }
 
     return (
         <>
-            <Top/>
             <Container>
-                <ImgDiv/>
+                <NavLink to={"/"}>뒤로</NavLink>
                 <LoginDiv>
                     <PageTitle>로그인</PageTitle>
-                    <LoginTypeDiv>
-                        <Button1 onClick={handleTypeBtnClick}>소상공인</Button1>
-                        <Button1 onClick={handleTypeBtnClick}>인플루언서</Button1>
-                    </LoginTypeDiv>
                     <LoginInputDiv>
                         <LoginInput type="text" id="id" placeholder="아이디" required autoFocus></LoginInput>
                         <LoginInput type="text" id="password" placeholder="비밀번호" required></LoginInput>
@@ -54,17 +28,12 @@ export default Login;
 const Container = styled.div`
     padding-top: 70px;
     display: flex;
-    
+    justify-content: center;
 `
 
 const PageTitle = styled.h1`
+    text-align: center;
 `
-
-const ImgDiv = styled.div`
-    width: 500px;
-    height: 600px;
-
-`;
 
 const LoginDiv = styled.div`
     width: 50%;
@@ -74,15 +43,8 @@ const LoginDiv = styled.div`
     flex-direction: column;
 
     :nth-child(n) {
-        gap: 8px;
+        gap: 15px;
     }
-`;
-
-const LoginTypeDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    
-    margin-bottom: 8px;
 `;
 
 const LoginInputDiv = styled.div`
