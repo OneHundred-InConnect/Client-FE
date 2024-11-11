@@ -3,8 +3,7 @@ import Home from "./pages/Home";
 import Service from "./pages/Service";
 import Campaign from "./pages/Campaign";
 import Premium from "./pages/Premium";
-import Login from "./pages/Login";
-import Nav from "./components/Nav";
+import Login from "./pages/Users/Login";
 import Layout from "./components/Layout";
 
 function App() {

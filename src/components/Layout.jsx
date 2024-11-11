@@ -17,5 +17,6 @@ const Layout = () => {
 export default Layout;
 
 const Container = styled.div`
+ 
     padding-top: 70px;
 `
