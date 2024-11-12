@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Nav from "./Nav";
-import styled from "styled-components";
+import {Container} from "../styles/common/FrameStyles";
 
 const Layout = () => {
     return (
@@ -15,8 +15,3 @@ const Layout = () => {
 }
 
 export default Layout;
-
-const Container = styled.div`
- 
-    padding-top: 70px;
-`

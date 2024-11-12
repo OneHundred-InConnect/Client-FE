@@ -1,4 +1,4 @@
-function Premium() {
+function PremiumPage() {
     return (
         <div>
             <span>premium</span>
@@ -6,4 +6,4 @@ function Premium() {
     );
 }
 
-export default Premium;
+export default PremiumPage;

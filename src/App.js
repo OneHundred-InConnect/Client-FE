@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import Service from "./pages/Service";
+import LandingPage from "./pages/landing/LandingPage";
+import ServicePage from "./pages/landing/ServicePage";
 import Campaign from "./pages/Campaign";
-import Premium from "./pages/Premium";
-import LoginPage from "./pages/Users/LoginPage";
+import PremiumPage from "./pages/landing/PremiumPage";
+import LoginPage from "./pages/user/LoginPage";
 import Layout from "./components/Layout";
 
 function App() {
@@ -12,9 +12,9 @@ function App() {
             <Routes>
                 <Route element={<Layout/>}>
                     <Route path="/" element={<LandingPage/>}/>
-                    <Route path="/service" element={<Service/>}/>
+                    <Route path="/service" element={<ServicePage/>}/>
                     <Route path="/campaign" element={<Campaign/>}/>
-                    <Route path="/premium" element={<Premium/>}/>
+                    <Route path="/premium" element={<PremiumPage/>}/>
                 </Route>
                 <Route path="/login" element={<LoginPage/>}/>
             </Routes>
