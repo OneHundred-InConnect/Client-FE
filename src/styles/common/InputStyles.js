@@ -17,10 +17,11 @@ export const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 15px
 `;
 
 export const ErrorText = styled.span`
-    color: red;
+    color: indianred;
     font-size: 12px;
     padding-left: 4px;
     line-height: 0.3;  // 줄 간격을 줄여서 더 붙어보이게 함

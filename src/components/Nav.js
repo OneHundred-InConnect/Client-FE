@@ -12,7 +12,7 @@ const Nav = () => {
                 <NavLink to="/premium">프리미엄</NavLink>
             </NavMenu>
             <NavLogin>
-                <NavLink to="/login">로그인</NavLink>
+                <NavLink to="/login" className="white">로그인</NavLink>
             </NavLogin>
         </NavContainer>
     );
