@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export const NavContainer = styled.div`
     width: 100%;
     height: 70px;
-    
+
     display: flex;
     position: fixed;
     z-index: 1000;
@@ -12,8 +12,11 @@ export const NavContainer = styled.div`
     text-align: center;
     align-items: center;
     justify-content: space-evenly;
-    
-   /* background: white;*/
+
+    &.dark {
+        background: #182127;
+        justify-content: start;
+    }
 `
 
 export const NavLink = styled(Link)`
@@ -23,12 +26,8 @@ export const NavLink = styled(Link)`
     text-decoration: none;
     align-items: center;
 
-    &:hover {
-        color: blue;
-    }
-    
-    &:active {
-        color: red;
+    &.white {
+        color: white
     }
 `
 
@@ -52,6 +51,6 @@ export const NavLogin = styled.div`
     align-items: center;
     justify-content: center;
     
-    background: aliceblue;
+    background: dodgerblue;
     border-radius: 10px;
 `;

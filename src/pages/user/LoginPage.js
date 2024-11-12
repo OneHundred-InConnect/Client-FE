@@ -3,6 +3,8 @@ import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputS
 import {NavLink} from "../../styles/common/NavStyles";
 import {useCallback, useState} from "react";
 import {Container, PageTitle} from "../../styles/common/FrameStyles";
+import {Link} from "react-router-dom";
+import Top from "../../components/Top";
 
 function LoginPage() {
     const [userInputs, setUserInputs] = useState({
@@ -47,11 +49,11 @@ function LoginPage() {
     }, [userInputs, isEmpty])
 
     return (
-        <Container>
-            <NavLink to={"/"}>뒤로</NavLink>
-            <LoginDiv>
-                <PageTitle>로그인</PageTitle>
-                <LoginInputDiv>
+        <>
+            <Top/>
+            <Container>
+                <LoginDiv>
+                    <PageTitle>로그인</PageTitle>
                     <InputWrapper>
                         <RequiredInput
                             name="id"
@@ -61,7 +63,7 @@ function LoginPage() {
                             value={id || ''}
                             autoFocus
                         />
-                        {isEmpty.id && <ErrorText> '아이디를 입력해주세요'</ErrorText>}
+                        {isEmpty.id && <ErrorText>아이디를 입력해주세요.</ErrorText>}
                     </InputWrapper>
                     <InputWrapper>
                         <RequiredInput
@@ -72,13 +74,13 @@ function LoginPage() {
                             $isError={isEmpty.password}
                             value={password || ''}
                         />
-                        {isEmpty.password && <ErrorText>'비밀번호를 입력해주세요' </ErrorText>}
+                        {isEmpty.password && <ErrorText>비밀번호를 입력해주세요.</ErrorText>}
                     </InputWrapper>
                     <LoginBtn onClick={onClick}>로그인</LoginBtn>
-                    <SignUpBtn id="signUpBtn">회원가입</SignUpBtn>
-                </LoginInputDiv>
-            </LoginDiv>
-        </Container>
+                    <SignUpLink to="signUp">회원가입</SignUpLink>
+                </LoginDiv>
+            </Container>
+        </>
     );
 }
 
@@ -87,18 +89,9 @@ export default LoginPage;
 const LoginDiv = styled.div`
     width: 50%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
-
-    :nth-child(n) {
-        gap: 15px;
-    }
-`;
-
-const LoginInputDiv = styled.div`
-    display: flex;
-    flex-direction: column;
+    gap: 15px;   
 `;
 
 const LoginBtn = styled.button`
@@ -116,15 +109,8 @@ const LoginBtn = styled.button`
     }
 `;
 
-const SignUpBtn = styled.button`
-    border: none;
-    background: none;
+const SignUpLink = styled(Link)`
+    text-decoration: none;
+    color: black;
     font-weight: bold;
-
-    display: flex;
-    left: 0;
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
+`
