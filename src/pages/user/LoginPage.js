@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputStyles";
-import {NavLink} from "../../styles/common/NavStyles";
 import {useCallback, useState} from "react";
-import {Container, PageTitle} from "../../styles/common/FrameStyles";
+import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
+import {Link, useNavigate} from "react-router-dom";
+import Top from "../../components/Top";
 
 function LoginPage() {
     const [userInputs, setUserInputs] = useState({
@@ -46,12 +47,14 @@ function LoginPage() {
 
     }, [userInputs, isEmpty])
 
+    const navigate = useNavigate();
+
     return (
-        <Container>
-            <NavLink to={"/"}>뒤로</NavLink>
-            <LoginDiv>
-                <PageTitle>로그인</PageTitle>
-                <LoginInputDiv>
+        <>
+            <Top/>
+            <Container>
+                <LoginDiv>
+                    <PageTitle>로그인</PageTitle>
                     <InputWrapper>
                         <RequiredInput
                             name="id"
@@ -61,7 +64,7 @@ function LoginPage() {
                             value={id || ''}
                             autoFocus
                         />
-                        {isEmpty.id && <ErrorText> '아이디를 입력해주세요'</ErrorText>}
+                        {isEmpty.id && <ErrorText>아이디를 입력해주세요.</ErrorText>}
                     </InputWrapper>
                     <InputWrapper>
                         <RequiredInput
@@ -72,13 +75,14 @@ function LoginPage() {
                             $isError={isEmpty.password}
                             value={password || ''}
                         />
-                        {isEmpty.password && <ErrorText>'비밀번호를 입력해주세요' </ErrorText>}
+                        {isEmpty.password && <ErrorText>비밀번호를 입력해주세요.</ErrorText>}
                     </InputWrapper>
                     <LoginBtn onClick={onClick}>로그인</LoginBtn>
-                    <SignUpBtn id="signUpBtn">회원가입</SignUpBtn>
-                </LoginInputDiv>
-            </LoginDiv>
-        </Container>
+                    <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
+                    <button onClick={() => navigate('/login/signUp') }>회원가입</button>
+                </LoginDiv>
+            </Container>
+        </>
     );
 }
 
@@ -87,18 +91,9 @@ export default LoginPage;
 const LoginDiv = styled.div`
     width: 50%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
-
-    :nth-child(n) {
-        gap: 15px;
-    }
-`;
-
-const LoginInputDiv = styled.div`
-    display: flex;
-    flex-direction: column;
+    gap: 15px;   
 `;
 
 const LoginBtn = styled.button`
@@ -116,15 +111,8 @@ const LoginBtn = styled.button`
     }
 `;
 
-const SignUpBtn = styled.button`
-    border: none;
-    background: none;
+const SignUpLink = styled(Link)`
+    text-decoration: none;
+    color: black;
     font-weight: bold;
-
-    display: flex;
-    left: 0;
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
+`
