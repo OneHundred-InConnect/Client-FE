@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputStyles";
-import {NavLink} from "../../styles/common/NavStyles";
 import {useCallback, useState} from "react";
-import {Container, PageTitle} from "../../styles/common/FrameStyles";
-import {Link} from "react-router-dom";
+import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
+import {Link, useNavigate} from "react-router-dom";
 import Top from "../../components/Top";
 
 function LoginPage() {
@@ -48,6 +47,8 @@ function LoginPage() {
 
     }, [userInputs, isEmpty])
 
+    const navigate = useNavigate();
+
     return (
         <>
             <Top/>
@@ -77,7 +78,8 @@ function LoginPage() {
                         {isEmpty.password && <ErrorText>비밀번호를 입력해주세요.</ErrorText>}
                     </InputWrapper>
                     <LoginBtn onClick={onClick}>로그인</LoginBtn>
-                    <SignUpLink to="signUp">회원가입</SignUpLink>
+                    <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
+                    <button onClick={() => navigate('/login/signUp') }>회원가입</button>
                 </LoginDiv>
             </Container>
         </>

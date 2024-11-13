@@ -4,8 +4,11 @@ import {Container, ContentContainer, PageTitle} from "../../styles/common/FrameS
 import Top from "../../components/Top";
 import {Input, InputWrapper} from "../../styles/common/InputStyles";
 import {SubmitBtn} from "../../styles/common/ButtonStyles";
+import {useNavigate} from "react-router-dom";
 
 const SignUpPage = () => {
+    const navigate = useNavigate();
+
     const [userType, setUserType] = useState('business');
     const [signUpInput, setSignUpInput] = useState({
         username: "",
@@ -22,7 +25,6 @@ const SignUpPage = () => {
         followerCount: "",
     });
 
-    // 공통 입력 필드 정의
     const commonFields = [
         { name: 'username', type: 'text', placeholder: '아이디' },
         { name: 'password', type: 'password', placeholder: '비밀번호' },
@@ -38,29 +40,29 @@ const SignUpPage = () => {
         { name: 'storeAddress', type: 'text', placeholder: '가게 주소' }
     ];
 
+
     const influencerFields = [
         { name: 'snsType', type: 'text', placeholder: 'SNS 유형' },
         { name: 'snsUrl', type: 'text', placeholder: 'SNS 링크' }
     ];
-
-
     const onTypeBtnClick = e => {
         e.preventDefault();
         setUserType(e.target.id);
         console.log("signup type: " + e.target.id);
-    }
 
+    }
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setSignUpInput(prev => ({
             ...prev,
             [name]: value
         }));
-    };
 
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(signUpInput);
+        navigate('/login');
     };
     return (
         <>
@@ -69,12 +71,8 @@ const SignUpPage = () => {
                 <ContentContainer>
                     <PageTitle>회원가입</PageTitle>
                     <UserTypeWrapper>
-                        <UserTypeBtn id="business" onClick={onTypeBtnClick}>
-                            소상공인
-                        </UserTypeBtn>
-                        <UserTypeBtn id="influencer" onClick={onTypeBtnClick}>
-                            인플루언서
-                        </UserTypeBtn>
+                        <UserTypeBtn id="business" onClick={onTypeBtnClick}>소상공인</UserTypeBtn>
+                        <UserTypeBtn id="influencer" onClick={onTypeBtnClick}>인플루언서</UserTypeBtn>
                     </UserTypeWrapper>
 
                     <form onSubmit={handleSubmit}>
@@ -147,5 +145,4 @@ const UserTypeBtn = styled.button`
     &:hover {
         background: #eaeaea;
     }
-     
 `

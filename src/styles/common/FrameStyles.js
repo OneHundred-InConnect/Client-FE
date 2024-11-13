@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
     padding: 100px 0;
@@ -21,4 +22,14 @@ export const ContentContainer = styled.div`
 export const PageTitle = styled.h1`
     text-align: center;
     padding: 50px 0 30px; 
+`
+
+export const LinkDefault = styled(Link)`
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    
+    &.black {
+        color: black;
+    }
 `
