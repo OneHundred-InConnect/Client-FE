@@ -47,8 +47,6 @@ function LoginPage() {
 
     }, [userInputs, isEmpty])
 
-    const navigate = useNavigate();
-
     return (
         <>
             <Top/>
@@ -110,8 +108,3 @@ const LoginBtn = styled.button`
     }
 `;
 
-const SignUpLink = styled(Link)`
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-`
