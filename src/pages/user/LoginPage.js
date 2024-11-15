@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputStyles";
 import {useCallback, useState} from "react";
 import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
-import {Link, useNavigate} from "react-router-dom";
 import Top from "../../components/Top";
 
 function LoginPage() {
@@ -47,8 +46,6 @@ function LoginPage() {
 
     }, [userInputs, isEmpty])
 
-    const navigate = useNavigate();
-
     return (
         <>
             <Top/>
@@ -79,7 +76,6 @@ function LoginPage() {
                     </InputWrapper>
                     <LoginBtn onClick={onClick}>로그인</LoginBtn>
                     <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
-                    <button onClick={() => navigate('/login/signUp') }>회원가입</button>
                 </LoginDiv>
             </Container>
         </>
@@ -111,8 +107,3 @@ const LoginBtn = styled.button`
     }
 `;
 
-const SignUpLink = styled(Link)`
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-`

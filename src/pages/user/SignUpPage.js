@@ -1,109 +1,265 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {Container, ContentContainer, PageTitle} from "../../styles/common/FrameStyles";
 import Top from "../../components/Top";
-import {Input, InputWrapper} from "../../styles/common/InputStyles";
-import {SubmitBtn} from "../../styles/common/ButtonStyles";
-import {useNavigate} from "react-router-dom";
+import { Container, ContentContainer, PageTitle } from "../../styles/common/FrameStyles";
+import { Input, InputWrapper } from "../../styles/common/InputStyles";
+import { SubmitBtn } from "../../styles/common/ButtonStyles";
+
+const REGIONS = {
+    경기도: ['수원', '고양', '용인', '성남', '부천'],
+    강원도: ['춘천', '원주', '강릉', '속초'],
+    충청도: ['청주', '천안', '아산', '공주'],
+    전라도: ['전주', '군산', '익산', '목포'],
+    경상도: ['부산', '대구', '울산', '포항'],
+    제주도: ['제주시', '서귀포시']
+};
+
+const FORM_CONFIG = {
+    common: [
+        {
+            name: 'username',
+            type: 'text',
+            placeholder: '아이디',
+            component: 'input'
+        },
+        {
+            name: 'password',
+            type: 'password',
+            placeholder: '비밀번호',
+            component: 'input'
+        },
+        {
+            name: 'email',
+            type: 'email',
+            placeholder: '이메일',
+            component: 'input'
+        },
+        {
+            name: 'genderType',
+            type: 'radio',
+            placeholder: '성별',
+            options: ['남성', '여성'],
+            component: 'radio'
+        },
+        {
+            name: 'birthDate',
+            type: 'date',
+            placeholder: '생년월일',
+            component: 'input'
+        },
+        {
+            name: 'region',
+            type: 'select',
+            component: 'regionSelect'
+        }
+    ],
+    business: [
+        {
+            name: 'storeType',
+            type: 'select',
+            options: ['식당', '술집', '카페', '베이커리', '디저트'],
+            component: 'select'
+        },
+        {
+            name: 'storeName',
+            type: 'text',
+            placeholder: '가게 이름',
+            component: 'input'
+        },
+        {
+            name: 'storeAddress',
+            type: 'text',
+            placeholder: '가게 주소',
+            component: 'input'
+        }
+    ],
+    influencer: [
+        {
+            name: 'snsType',
+            type: 'select',
+            placeholder: 'SNS 타입',
+            options: ['인스타그램', '블로그', '유튜브', '틱톡'],
+            component: 'select'
+        },
+        {
+            name: 'snsUrl',
+            type: 'url',
+            placeholder: 'SNS 링크',
+            component: 'input'
+        },
+        {
+            name: 'followerCount',
+            type: 'number',
+            placeholder: '팔로워 수',
+            component: 'input'
+        }
+    ]
+};
+
+const USER_TYPES = {
+    business: { id: 'business', label: '소상공인', color: 'indianred' },
+    influencer: { id: 'influencer', label: '인플루언서', color: 'dodgerblue' }
+};
 
 const SignUpPage = () => {
     const navigate = useNavigate();
-
     const [userType, setUserType] = useState('business');
-    const [signUpInput, setSignUpInput] = useState({
-        username: "",
-        password: "",
-        email: "",
-        genderType: "",
-        birthDate: "",
-        region: "",
-        storeType: "",
-        storeName: "",
-        storeAddress: "",
-        snsType: "",
-        snsUrl: "",
-        followerCount: "",
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        email: '',
+        genderType: '',
+        birthDate: '',
+        region: { province: '', city: '' },
+        storeType: '',
+        storeName: '',
+        storeAddress: '',
+        snsType: '',
+        snsUrl: '',
+        followerCount: ''
     });
 
-    const commonFields = [
-        { name: 'username', type: 'text', placeholder: '아이디' },
-        { name: 'password', type: 'password', placeholder: '비밀번호' },
-        { name: 'email', type: 'email', placeholder: '이메일' },
-        { name: 'genderType', type: 'text', placeholder: '성별' },
-        { name: 'birthDate', type: 'date', placeholder: '생년월일' },
-        { name: 'region', type: 'text', placeholder: '지역' }
-    ];
-
-    const businessFields = [
-        { name: 'storeType', type: 'number', placeholder: '가게 유형' },
-        { name: 'storeName', type: 'text', placeholder: '가게 이름' },
-        { name: 'storeAddress', type: 'text', placeholder: '가게 주소' }
-    ];
-
-
-    const influencerFields = [
-        { name: 'snsType', type: 'text', placeholder: 'SNS 유형' },
-        { name: 'snsUrl', type: 'text', placeholder: 'SNS 링크' }
-    ];
-    const onTypeBtnClick = e => {
-        e.preventDefault();
-        setUserType(e.target.id);
-        console.log("signup type: " + e.target.id);
-
-    }
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setSignUpInput(prev => ({
-            ...prev,
-            [name]: value
-        }));
-
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
+
+    const handleRegionChange = (type, value) => {
+        setFormData(prev => ({
+            ...prev,
+            region: {
+                ...prev.region,
+                [type]: value,
+                ...(type === 'province' ? { city: '' } : {})
+            }
+        }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(signUpInput);
+        console.log(formData);
         navigate('/login');
     };
+
+    const renderField = (field) => {
+        switch (field.component) {
+            case 'radio':
+                return (
+                    <RadioGroup key={field.name}>
+                        <label>{field.placeholder || field.name}</label>
+                        {field.options.map(option => (
+                            <RadioLabel key={option}>
+                                <input
+                                    type="radio"
+                                    name={field.name}
+                                    value={option}
+                                    checked={formData[field.name] === option}
+                                    onChange={handleInputChange}
+                                />
+                                {option}
+                            </RadioLabel>
+                        ))}
+                    </RadioGroup>
+                );
+
+            case 'select':
+                return (
+                    <SelectWrapper key={field.name}>
+                        <label>{field.placeholder || field.name}</label>
+                        <select
+                            name={field.name}
+                            value={formData[field.name]}
+                            onChange={handleInputChange}
+                        >
+                            <option value="">선택하세요</option>
+                            {field.options.map(option => (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                    </SelectWrapper>
+                );
+
+            case 'regionSelect':
+                return (
+                    <RegionWrapper key={field.name}>
+                        <label>지역</label>
+                        <select
+                            value={formData.region.province}
+                            onChange={(e) => handleRegionChange('province', e.target.value)}
+                        >
+                            <option value="">도/시 선택</option>
+                            {Object.keys(REGIONS).map(province => (
+                                <option key={province} value={province}>
+                                    {province}
+                                </option>
+                            ))}
+                        </select>
+                        {formData.region.province && (
+                            <select
+                                value={formData.region.city}
+                                onChange={(e) => handleRegionChange('city', e.target.value)}
+                            >
+                                <option value="">시/군/구 선택</option>
+                                {REGIONS[formData.region.province].map(city => (
+                                    <option key={city} value={city}>
+                                        {city}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
+                    </RegionWrapper>
+                );
+
+            default:
+                return (
+                    <Input
+                        key={field.name}
+                        name={field.name}
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        value={formData[field.name]}
+                        onChange={handleInputChange}
+                    />
+                );
+        }
+    };
+
+    const renderFormFields = () => {
+        const fieldsToRender = [
+            ...FORM_CONFIG.common,
+            ...FORM_CONFIG[userType]
+        ];
+
+        return fieldsToRender.map(renderField);
+    };
+
     return (
         <>
-            <Top/>
+            <Top />
             <Container>
                 <ContentContainer>
                     <PageTitle>회원가입</PageTitle>
                     <UserTypeWrapper>
-                        <UserTypeBtn id="business" onClick={onTypeBtnClick}>소상공인</UserTypeBtn>
-                        <UserTypeBtn id="influencer" onClick={onTypeBtnClick}>인플루언서</UserTypeBtn>
+                        {Object.values(USER_TYPES).map(({ id, label }) => (
+                            <UserTypeBtn
+                                key={id}
+                                id={id}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setUserType(id);
+                                }}
+                            >
+                                {label}
+                            </UserTypeBtn>
+                        ))}
                     </UserTypeWrapper>
 
                     <form onSubmit={handleSubmit}>
                         <InputWrapper>
-                            {commonFields.map(field => (
-                                <Input
-                                    key={field.name}
-                                    {...field}
-                                    value={signUpInput[field.name]}
-                                    onChange={handleInputChange}
-                                />
-                            ))}
-
-                            {userType === 'business'
-                                ? businessFields.map(field => (
-                                    <Input
-                                        key={field.name}
-                                        {...field}
-                                        value={signUpInput[field.name]}
-                                        onChange={handleInputChange}
-                                    />
-                                ))
-                                : influencerFields.map(field => (
-                                    <Input
-                                        key={field.name}
-                                        {...field}
-                                        value={signUpInput[field.name]}
-                                        onChange={handleInputChange}
-                                    />
-                                ))
-                            }
+                            {renderFormFields()}
                             <SubmitBtn type="submit">가입하기</SubmitBtn>
                         </InputWrapper>
                     </form>
@@ -119,30 +275,71 @@ const UserTypeWrapper = styled.div`
     display: flex;
     justify-content: center;
     gap: 50px;
-`
+`;
+
 const UserTypeBtn = styled.button`
     width: 150px;
     height: 50px;
     border: 2px solid gray;
     border-radius: 12px;
-
     font-size: 20px;
     font-weight: bold;
     text-align: center;
     align-content: center;
     background: white;
-    
+
     &#business {
-        color: indianred;
-        border-color: indianred;
+        color: ${USER_TYPES.business.color};
+        border-color: ${USER_TYPES.business.color};
     }
 
     &#influencer {
-        color: dodgerblue;
-        border-color: dodgerblue;
+        color: ${USER_TYPES.influencer.color};
+        border-color: ${USER_TYPES.influencer.color};
     }
 
     &:hover {
         background: #eaeaea;
     }
-`
+`;
+
+const RadioGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 10px 0;
+  
+  label {
+    margin-right: 10px;
+  }
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
+  
+  select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+`;
+
+const RegionWrapper = styled(SelectWrapper)`
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  
+  select {
+    flex: 1;
+  }
+`;
