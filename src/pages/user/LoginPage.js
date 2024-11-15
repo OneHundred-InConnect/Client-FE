@@ -79,7 +79,6 @@ function LoginPage() {
                     </InputWrapper>
                     <LoginBtn onClick={onClick}>로그인</LoginBtn>
                     <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
-                    <button onClick={() => navigate('/login/signUp') }>회원가입</button>
                 </LoginDiv>
             </Container>
         </>
