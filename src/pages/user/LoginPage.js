@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputStyles";
 import {useCallback, useState} from "react";
 import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
-import {Link, useNavigate} from "react-router-dom";
 import Top from "../../components/Top";
 
 function LoginPage() {
