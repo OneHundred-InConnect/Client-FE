@@ -14,6 +14,7 @@ export const Button1 = styled.button`
 `;
 
 export const SubmitBtn = styled.button`
+    width: 120px;
     height: 50px;
 
     font-size: 16px;
