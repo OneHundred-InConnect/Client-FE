@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ErrorText, InputWrapper, RequiredInput} from "../../styles/common/InputStyles";
+import {ErrorText, InputWrapper, RequiredInput} from "../../components/common/Input";
 import {useCallback, useState} from "react";
 import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
 import Top from "../../components/Top";
@@ -74,8 +74,10 @@ function LoginPage() {
                         />
                         {isEmpty.password && <ErrorText>비밀번호를 입력해주세요.</ErrorText>}
                     </InputWrapper>
-                    <LoginBtn onClick={onClick}>로그인</LoginBtn>
-                    <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
+                    <InputWrapper>
+                        <LoginBtn onClick={onClick}>로그인</LoginBtn>
+                        <LinkDefault to="signUp" className='black'>회원가입</LinkDefault>
+                    </InputWrapper>
                 </LoginDiv>
             </Container>
         </>
@@ -85,14 +87,18 @@ function LoginPage() {
 export default LoginPage;
 
 const LoginDiv = styled.div`
-    width: 50%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;   
 `;
 
-const LoginBtn = styled.button`
+const LoginBtn = styled.button` 
+    width: 432px;
     height: 50px;
 
     font-size: 16px;

@@ -16,7 +16,6 @@ export const ContentContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;   
 `;
 
 export const PageTitle = styled.h1`
