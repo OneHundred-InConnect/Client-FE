@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Top from "../../components/Top";
+import Top from "../../components/Header";
 import { Container, ContentContainer, PageTitle } from "../../styles/common/FrameStyles";
-import { InputWrapper } from "../../components/common/Input";
+import { InputWrapper } from "../../components/common/Inputs/Input";
 import { SubmitBtn } from "../../components/common/Buttons/SubmitBtn";
 import { FORM_FIELDS, USER_TYPES } from "../../constants/formFields";
 import { renderField } from "../../components/SignUp/FormField";

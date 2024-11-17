@@ -1,4 +1,4 @@
-import {Input} from "../common/Input";
+import {Input} from "../common/Inputs/Input";
 import React from "react";
 import {RadioGroup, RadioLabel} from "../common/Inputs/Radio";
 import {SelectInput} from "../common/Inputs/Select";

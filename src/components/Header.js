@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavContainer, NavLink, NavLogo,} from "../styles/common/NavStyles";
+import {NavContainer, NavLink, NavLogo,} from "./Nav/NavStyles";
 
 const Top = () => {
     return (
