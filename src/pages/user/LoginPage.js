@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {ErrorText, InputWrapper, RequiredInput} from "../../components/common/Input";
+import {ErrorText, InputWrapper, RequiredInput} from "../../components/common/Inputs/Input";
 import {useCallback, useState} from "react";
 import {Container, LinkDefault, PageTitle} from "../../styles/common/FrameStyles";
-import Top from "../../components/Top";
+import Top from "../../components/Header";
 
 function LoginPage() {
     const [userInputs, setUserInputs] = useState({

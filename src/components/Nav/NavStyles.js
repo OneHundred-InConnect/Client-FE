@@ -26,7 +26,7 @@ export const NavLink = styled(Link)`
     text-decoration: none;
     align-items: center;
 
-    &.white {
+    &.color-white {
         color: white
     }
 `
