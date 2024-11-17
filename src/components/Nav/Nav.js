@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavContainer, NavLink, NavLogin, NavLogo, NavMenu} from "./NavStyles";
+import {NavContainer, NavLink, NavButton, NavLogo, NavMenu} from "./NavStyles";
 
 const Nav = ({items = []}) => {
     const menuItems = items.filter(item => item.type === 'menu');
@@ -18,11 +18,11 @@ const Nav = ({items = []}) => {
                 ))}
             </NavMenu>
             {buttonItem && (
-                <NavLogin>
+                <NavButton>
                     <NavLink to={buttonItem.path} className="color-white">
                         {buttonItem.label}
                     </NavLink>
-                </NavLogin>
+                </NavButton>
             )}
         </NavContainer>
     );
