@@ -48,12 +48,18 @@ export const NavMenu = styled.div`
 
 export const NavButton = styled.div`
     min-width: 110px;
-    height: 70%;
+    height: 40px;
     
     display: flex;
     align-items: center;
     justify-content: center;
     
     background: dodgerblue;
-    border-radius: 10px;
+    border-radius: 5px;
 `;
+
+export const NavUser = styled.div`
+    :nth-child(n) {
+        font-weight: normal;
+    }
+`

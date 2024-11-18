@@ -1,6 +1,12 @@
 import {Container} from "../../../styles/common/FrameStyles";
-import styled from "styled-components";
 import {useState} from "react";
+import {
+    CampaignContainer,
+    CampaignContent,
+    CampaignImg,
+    CampaignSpan
+} from "../../../components/Campaign/CampaignContent";
+
 
 const test = [
     { img: '', title: '브랜드 마케팅 캠페인'},
@@ -38,31 +44,3 @@ const CampaignPage = () => {
 }
 
 export default CampaignPage;
-
-const CampaignContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 30px;
-    padding: 20px;
-`;
-
-const CampaignContent = styled.div`
-    width: 300px;
-    height: 200px;
-    background: #ececec;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-`;
-
-const CampaignImg = styled.div`
-    width: 100%;
-    height: 160px;
-    border-radius: 10px;
-    background: dodgerblue;
-`;
-
-const CampaignSpan = styled.span`
-    font-size: 16px;
-    padding: 0 10px;
-`;

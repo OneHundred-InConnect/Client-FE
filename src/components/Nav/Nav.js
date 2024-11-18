@@ -1,9 +1,10 @@
 import React from 'react';
-import {NavContainer, NavLink, NavButton, NavLogo, NavMenu} from "./NavStyles";
+import {NavContainer, NavLink, NavButton, NavLogo, NavMenu, NavUser} from "./NavStyles";
 
-const Nav = ({items = []}) => {
+const Nav = ({items}) => {
     const menuItems = items.filter(item => item.type === 'menu');
-    const buttonItem = items.find(item => item.type === 'button');
+    const loginItem = items.find(item => item.type === 'login');
+    const userItem = items.find(item => item.type === 'user');
 
     return (
         <NavContainer>
@@ -17,12 +18,17 @@ const Nav = ({items = []}) => {
                     </NavLink>
                 ))}
             </NavMenu>
-            {buttonItem && (
+            {loginItem && (
                 <NavButton>
-                    <NavLink to={buttonItem.path} className="color-white">
-                        {buttonItem.label}
+                    <NavLink to={loginItem.path} className="color-white">
+                        {loginItem.label}
                     </NavLink>
                 </NavButton>
+            )}
+            {userItem && (
+                <NavUser>
+                    <NavLink to={userItem.path}>{userItem.label}</NavLink>
+                </NavUser>
             )}
         </NavContainer>
     );
