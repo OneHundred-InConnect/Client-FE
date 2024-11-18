@@ -1,8 +1,10 @@
+import CampaignPage from "./CampaignPage";
+
 const BusinessPage = () => {
 
     return (
         <>
-
+            <CampaignPage/>
         </>
     )
 
