@@ -1,10 +1,10 @@
-import BusinessCampaignPage from "./BusinessCampaignPage";
+import CampaignPage from "../campaign/CampaignPage";
 
 const BusinessPage = () => {
 
     return (
         <>
-            <BusinessCampaignPage/>
+            <CampaignPage/>
         </>
     )
 
