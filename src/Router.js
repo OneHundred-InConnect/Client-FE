@@ -3,12 +3,13 @@ import Layout from "./components/Layout";
 import LandingPage from "./pages/landing/LandingPage";
 import ServicePage from "./pages/landing/ServicePage";
 import PremiumPage from "./pages/landing/PremiumPage";
-import BusinessPage from "./pages/home/business/BusinessPage";
-import InfluencerPage from "./pages/home/influencer/InfluencerPage";
-import CampaignPage from "./pages/home/business/CampaignPage";
+import BusinessPage from "./pages/business/BusinessPage";
+import InfluencerPage from "./pages/influencer/InfluencerPage";
+import BusinessCampaignPage from "./pages/business/BusinessCampaignPage";
 import LoginPage from "./pages/user/LoginPage";
 import SelectTypePage from "./pages/user/SignUpPage";
 import {PATH} from "./constants/path";
+import BusinessWorkPage from "./pages/business/BusinessWorkPage";
 
 const Router = () => {
     return (
@@ -18,9 +19,11 @@ const Router = () => {
                     <Route path={PATH.LANDING} element={<LandingPage/>}/>
                     <Route path={PATH.LANDING_SERVICE} element={<ServicePage/>}/>
                     <Route path={PATH.LANDING_PREMIUM} element={<PremiumPage/>}/>
-                    <Route path={PATH.BUSINESS_HOME} element={<BusinessPage/>}/>
-                    <Route path={PATH.INFLUENCER_HOME} element={<InfluencerPage/>}/>
-                    <Route path={PATH.BUSINESS_CAMPAIGN} element={<CampaignPage/>}/>
+                    <Route path={PATH.BUSINESS.HOME} element={<BusinessPage/>}/>
+                    <Route path={PATH.INFLUENCER.HOME} element={<InfluencerPage/>}/>
+                    <Route path={PATH.BUSINESS.CAMPAIGN} element={<BusinessCampaignPage/>}/>
+                    <Route path={PATH.BUSINESS.PREMIUM} element={<PremiumPage/>}/>
+                    <Route path={PATH.BUSINESS.WORK} element={<BusinessWorkPage/>}/>
                 </Route>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/login/signUp" element={<SelectTypePage/>}/>
