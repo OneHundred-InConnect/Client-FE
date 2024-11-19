@@ -1,11 +1,11 @@
-import {Container} from "../../../styles/common/FrameStyles";
+import {Container} from "../../styles/common/FrameStyles";
 import {useState} from "react";
 import {
     CampaignContainer,
     CampaignContent,
     CampaignImg,
     CampaignSpan
-} from "../../../components/Campaign/CampaignContent";
+} from "../../components/Campaign/CampaignContent";
 
 
 const test = [
@@ -29,7 +29,7 @@ const Campaign = ({test}) => {
     );
 }
 
-const CampaignPage = () => {
+const BusinessCampaignPage = () => {
     const [contents, setContents] = useState(test);
 
     return (
@@ -43,4 +43,4 @@ const CampaignPage = () => {
     );
 }
 
-export default CampaignPage;
+export default BusinessCampaignPage;
